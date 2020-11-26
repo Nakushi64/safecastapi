@@ -2,26 +2,24 @@
 
 <h2><%= t(".measurements") -%></h2>
 
-<div class="navbar">
-  <div class="navbar-inner">
-    <ul class="nav">
-      <%= measurement_nav_li(:all) %>
-      <%= measurement_nav_li(:cpm) %>
-      <%= measurement_nav_li(:usv) %>
-    </ul>
-    <ul class="nav pull-right">
-      <%- if user_signed_in? -%>
-        <li class="pull-right <%= 'active' if params[:user_id].blank? %>">
-          <%= link_to t(".everyone"), params.to_unsafe_h.except(:user_id) %>
-        </li>
-      <%- end -%>
-      <%- if user_signed_in? -%>
-        <li class="pull-right <%= 'active' if params[:user_id] == current_user.id.to_s %>">
-          <%= link_to t(".yours"), params.to_unsafe_h.merge(:user_id => current_user.id) %>
-        </li>
-      <%- end -%>
-    </ul>
-  </div>
+<div class="navbar navbar-inner" style="max-height: 20px">
+  <ul class="nav">
+    <%= measurement_nav_li(:all) %>
+    <%= measurement_nav_li(:cpm) %>
+    <%= measurement_nav_li(:usv) %>
+  </ul>
+  <ul class="nav pull-right">
+    <%- if user_signed_in? -%>
+      <li class="pull-right <%= 'active' if params[:user_id].blank? %>">
+        <%= link_to t(".everyone"), params.to_unsafe_h.except(:user_id) %>
+      </li>
+    <%- end -%>
+    <%- if user_signed_in? -%>
+      <li class="pull-right <%= 'active' if params[:user_id] == current_user.id.to_s %>">
+        <%= link_to t(".yours"), params.to_unsafe_h.merge(:user_id => current_user.id) %>
+      </li>
+    <%- end -%>
+  </ul>
 </div>
 
 <%= summarize_results(@measurements) %>

@@ -23,12 +23,12 @@
     <![endif]-->
   </head>
   <body data-spy="scroll" data-target=".doc-nav">
-    <div class="container">
+    <div class="container" style="background: white; position: fixed; width: 99%; margin-left: 10px;">
       <%= render :partial => 'shared/dashboard_navigation' %>
-
-      <div class="row">
-        <div class="span3">
-          <div class="sidebar-nav" id="api-nav">
+    </div>
+    <div class="container-fluid" style="padding-top: 100px">
+      <div class="row" style="float: left;">
+          <div class="sidebar-nav" data-spy="affix" style="margin-top: 50px">
             <ul class="nav nav-tabs nav-stacked">
               <%- if user_signed_in? -%>
                 <li <%= raw('class="active"') if controller_name == 'dashboard' %>>
@@ -61,21 +61,17 @@
             </ul>
             <%= render 'stuck_drives' if current_user.try!(:moderator?) %>
           </div>
-        </div>
 
-        <div class="span9">
-          <%= render 'shared/flash', flash: flash %>
-
-          <%= yield %>
-        </div>
       </div>
-
+      <div style="margin-left: 200px">
+        <%= render 'shared/flash', flash: flash %>
+        <%= yield %>
+      </div>
       <footer class="row">
         <p class="span12"><%= t 'creative_commons_non_commercial' %></p>
         <p class="span12"><%= link_to_switch_locale %></p>
       </footer>
     </div>
-
     <%- if user_signed_in? -%>
       <div id="profile-modal" class="modal hide fade" tabindex="-1">
         <div class="modal-header">
