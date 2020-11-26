@@ -8,27 +8,29 @@
 
 <h2><%= t(".bgeigie_imports") %></h2>
 
-<div class="navbar navbar-inner" style="max-height: 20px">
-  <ul class="nav">
-    <%= bgeigie_nav_li(:all) %>
-    <%= bgeigie_nav_li(:unprocessed) %>
-    <%= bgeigie_nav_li(:processed) %>
-    <%= bgeigie_nav_li(:submitted) %>
-    <%= bgeigie_nav_li(:done) %>
-    <% bgeigie_nav_li(:error) %>
-  </ul>
-  <ul class="nav pull-right">
-    <%- if user_signed_in? -%>
-      <li class="pull-right <%= 'active' if params[:by_user_id].blank? %>">
-        <%= link_to t(".everyone"), params.to_unsafe_h.except(:by_user_id) %>
-      </li>
-    <%- end -%>
-    <%- if user_signed_in? -%>
-      <li class="pull-right <%= 'active' if params[:by_user_id] == current_user.id.to_s %>">
-        <%= link_to t(".yours"), params.to_unsafe_h.merge(:by_user_id => current_user.id) %>
-      </li>
-    <%- end -%>
-  </ul>
+<div class="navbar">
+  <div class="navbar-inner">
+    <ul class="nav">
+      <%= bgeigie_nav_li(:all) %>
+      <%= bgeigie_nav_li(:unprocessed) %>
+      <%= bgeigie_nav_li(:processed) %>
+      <%= bgeigie_nav_li(:submitted) %>
+      <%= bgeigie_nav_li(:done) %>
+      <% bgeigie_nav_li(:error) %>
+    </ul>
+    <ul class="nav pull-right">
+      <%- if user_signed_in? -%>
+        <li class="pull-right <%= 'active' if params[:by_user_id].blank? %>">
+          <%= link_to t(".everyone"), params.to_unsafe_h.except(:by_user_id) %>
+        </li>
+      <%- end -%>
+      <%- if user_signed_in? -%>
+        <li class="pull-right <%= 'active' if params[:by_user_id] == current_user.id.to_s %>">
+          <%= link_to t(".yours"), params.to_unsafe_h.merge(:by_user_id => current_user.id) %>
+        </li>
+      <%- end -%>
+    </ul>
+  </div>
 </div>
 
 <%= summarize_results(@bgeigie_imports) %>

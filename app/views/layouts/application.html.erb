@@ -26,9 +26,8 @@
     <div class="container" style="background: white; position: fixed; max-height: 100px; width: 98%; margin-left: 20px;">
       <%= render :partial => 'shared/dashboard_navigation' %>
     </div>
-    <div class="container-fluid" style="padding-top: 100px">
-      <div class="row" style="float: left;">
-          <div class="sidebar-nav" data-spy="affix" style="margin-top: 50px; margin-left: 10px">
+    <div class="container-fluid" style="padding-top: 100px; padding-left: 10px; ">
+          <div class="sidebar-nav" data-spy="affix" style="margin-top: 50px;">
             <ul class="nav nav-tabs nav-stacked">
               <%- if user_signed_in? -%>
                 <li <%= raw('class="active"') if controller_name == 'dashboard' %>>
@@ -61,9 +60,7 @@
             </ul>
             <%= render 'stuck_drives' if current_user.try!(:moderator?) %>
           </div>
-
-      </div>
-      <div style="margin-left: 200px">
+      <div style="margin-left: 200px;">
         <%= render 'shared/flash', flash: flash %>
         <%= yield %>
       </div>
