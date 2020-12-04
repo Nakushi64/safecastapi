@@ -16,6 +16,7 @@ Rails.application.routes.draw do # rubocop:disable Metrics/BlockLength
     resource :home, controller: :home, only: :show
     resource :dashboard, only: %i(show)
     resource :profile
+    resources :device_stories
 
     resource :cron, only: :create
 
