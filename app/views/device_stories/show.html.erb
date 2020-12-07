@@ -48,22 +48,25 @@
     </iframe>
   </div>
 </div>
-<%=device_story_comments_path(@device_story)  %>
-<%= form_with model: Comment, url: device_story_comments_path(@device_story), method: 'post' do |form| %>
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content %>
-    <%  form.hidden_field :user_id, :value => 2 %>
-    <%= form.submit "Submit comment" %>
-  </div>
+
+<%- if user_signed_in? %>
+  <%= form_with model: Comment, url: device_story_comments_path(@device_story), method: 'post' do |form| %>
+    <div class="field">
+      <%= form.label :content %>
+      <%= form.text_area :content %>
+      <%= form.hidden_field :user_id, :value => current_user.id %>
+      <%= form.submit "Submit comment" %>
+    </div>
+  <% end %>
 <% end %>
 
 <%- if @device_story.comments.empty? %>
   No Comment.
 <%- else %>
+  <%- end %>
   <%- @device_story.comments.each do |comment| %>
+    <%= comment.user.name %>
     <%= comment.content %>
-  <% end %>
 <%- end %>
 <%= device_story_comments_path(@device_story) %>
 

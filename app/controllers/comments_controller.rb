@@ -24,8 +24,6 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.json
   def create
-    comment_params
-    params.inspect
     puts '****************|  COMMENT CREATE |*******************'
     params.inspect
     @comment = @device_story.comments.build(comment_params)
@@ -72,6 +70,7 @@ class CommentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def comment_params
+      params.inspect
       params.require(:comment).permit(:content, :device_story_id, :user_id)
     end
 
