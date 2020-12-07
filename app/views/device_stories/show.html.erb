@@ -49,27 +49,40 @@
   </div>
 </div>
 
-<%- if user_signed_in? %>
-  <%= form_with model: Comment, url: device_story_comments_path(@device_story), method: 'post' do |form| %>
-    <div class="field">
-      <%= form.label :content %>
-      <%= form.text_area :content %>
-      <%= form.hidden_field :user_id, :value => current_user.id %>
-      <%= form.submit "Submit comment" %>
-    </div>
+<div>
+  <h2>Comments: <br></h2>
+  <table class="table table-striped">
+    <tbody>
+    <%- if @device_story.comments.empty? %>
+      No Comments yet.
+    <%- else %>
+      <%- @device_story.comments.each do |comment| %>
+        <tr>
+          <td>
+            <b><%= comment.user.name %></b><br>
+            <%= comment.content %>
+            <%- if user_signed_in? -%>
+              <%- if (comment.user_id == current_user.id) || moderator?(current_user) %>
+                <div style="float:right"> <%= link_to 'Delete', device_story_comment_path(@device_story, comment), method: :delete %></div>
+              <%- end %>
+            <%- end %>
+          </td>
+        </tr>
+      <%-end %>
+    <%- end %>
+    </tbody>
+  </table>
+</div>
+<div style="margin-left: 5px;min-width: 500px">
+  <%- if user_signed_in? %>
+    <%= form_with model: Comment, url: device_story_comments_path(@device_story), method: 'post' do |form| %>
+        <%= form.label :content, current_user.name %>
+        <%= form.text_area :content, :rows => 3, style: 'width:90%;' %>
+        <%= form.hidden_field :user_id, :value => current_user.id %>
+        <p><%= form.submit "Submit comment" %></p>
+    <% end %>
   <% end %>
-<% end %>
-
-<%- if @device_story.comments.empty? %>
-  No Comment.
-<%- else %>
-  <%- end %>
-  <%- @device_story.comments.each do |comment| %>
-    <%= comment.user.name %>
-    <%= comment.content %>
-<%- end %>
-<%= device_story_comments_path(@device_story) %>
+</div>
 
 <div class="spacer"></div>
 <%= current_page_api_example :device_stories_url %>
-e
