@@ -48,6 +48,25 @@
     </iframe>
   </div>
 </div>
-<%= device_stories_comments_path(@device_story) %>
+<%=device_story_comments_path(@device_story)  %>
+<%= form_with model: Comment, url: device_story_comments_path(@device_story), method: 'post' do |form| %>
+  <div class="field">
+    <%= form.label :content %>
+    <%= form.text_area :content %>
+    <%  form.hidden_field :user_id, :value => 2 %>
+    <%= form.submit "Submit comment" %>
+  </div>
+<% end %>
+
+<%- if @device_story.comments.empty? %>
+  No Comment.
+<%- else %>
+  <%- @device_story.comments.each do |comment| %>
+    <%= comment.content %>
+  <% end %>
+<%- end %>
+<%= device_story_comments_path(@device_story) %>
+
 <div class="spacer"></div>
 <%= current_page_api_example :device_stories_url %>
+e

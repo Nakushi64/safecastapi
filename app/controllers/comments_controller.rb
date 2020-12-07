@@ -24,12 +24,15 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.json
   def create
+    comment_params
+    params.inspect
+    puts '****************|  COMMENT CREATE |*******************'
+    params.inspect
     @comment = @device_story.comments.build(comment_params)
-
+    puts 'SUCCESSFULLY SAVED'
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to device_story_comments_path(@device_story), notice: 'Comment was successfully created.' }
-        format.json { render :show, status: :created, location: @comment }
+        format.js {render inline: "location.reload();" }
       else
         format.html { render :new }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
@@ -42,7 +45,7 @@ class CommentsController < ApplicationController
   def update
     respond_to do |format|
       if @comment.update(comment_params)
-        format.html { redirect_to device_story_comments_path(@device_story), notice: 'Comment was successfully updated.' }
+        format.html { redirect_to device_story_path(@device_story), notice: 'Comment was successfully updated.' }
         format.json { render :show, status: :ok, location: @comment }
       else
         format.html { render :edit }
@@ -73,6 +76,6 @@ class CommentsController < ApplicationController
     end
 
     def get_device_story
-      @comment = DeviceStory.find(params[:device_story_id])
+      @device_story = DeviceStory.find(params[:device_story_id])
     end
 end
