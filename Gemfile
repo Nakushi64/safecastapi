@@ -42,6 +42,8 @@ gem 'responders'
 gem 'sass-rails', '~>5.0'
 gem 'simple_form'
 gem 'swagger-blocks'
+gem 'webpacker', '~> 5.x'
+
 # noinspection RailsParamDefResolve
 gem 'tzinfo-data', platforms: %i(mingw mswin x64_mingw)
 gem 'uglifier'

@@ -1,4 +1,5 @@
 <%= content_for(:title) { "Device Stories" } %>
+<%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 <div id="btn_fullscr" style="float: right; margin-top: 5px;">
   <%= render 'button_toggle_view'%>
 </div>
@@ -15,7 +16,9 @@
 
   </div>
 </div>
-
+<div data-controller="hello">
+  <div class="btn btn-primary">Say Hello</div>
+</div>
 <div id="results_class">
   <%= render 'results', device_stories: @device_stories %>
 </div>

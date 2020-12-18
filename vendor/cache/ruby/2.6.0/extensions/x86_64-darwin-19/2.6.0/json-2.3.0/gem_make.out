@@ -1,0 +1,13 @@
+current directory: /Users/parthenios64/IdeaProjects/safecastapi/vendor/cache/ruby/2.6.0/gems/json-2.3.0/ext/json
+/Users/parthenios64/.rbenv/versions/2.6.6/bin/ruby -I /Users/parthenios64/.rbenv/versions/2.6.6/lib/ruby/2.6.0 -r ./siteconf20201218-2943-1owttk9.rb extconf.rb
+creating Makefile
+
+current directory: /Users/parthenios64/IdeaProjects/safecastapi/vendor/cache/ruby/2.6.0/gems/json-2.3.0/ext/json
+make "DESTDIR=" clean
+
+current directory: /Users/parthenios64/IdeaProjects/safecastapi/vendor/cache/ruby/2.6.0/gems/json-2.3.0/ext/json
+make "DESTDIR="
+make: Nothing to be done for `all'.
+
+current directory: /Users/parthenios64/IdeaProjects/safecastapi/vendor/cache/ruby/2.6.0/gems/json-2.3.0/ext/json
+make "DESTDIR=" install

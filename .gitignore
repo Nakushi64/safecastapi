@@ -26,3 +26,10 @@ log/localeapp.yml
 .elasticbeanstalk/config.yml
 .elasticbeanstalk/app_versions/
 .elasticbeanstalk/saved_configs/
+
+/public/packs
+/public/packs-test
+/node_modules
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity
